@@ -6,14 +6,14 @@ def fdif(v : np.ndarray, n = 1):
     if n == 1:
         return (np.roll(v, -1) - np.roll(v, 1)) / (2 * h)
     
-    return fdif(fdif(v, n - 1), n - 1)
+    return fdif(fdif(v), n - 1)
 
 
 if __name__ == "__main__":
     # KdV equation: u_t + u*u_x + u_xxx = 0
     # u(x, 0) = 3 * A ** 2 * sech(0.5 * A * (x + 2)) ** 2 + 3 * B ** 2 * sech(0.5 * B * (x + 1)) ** 2, A = 25, B = 16
-    N = 256
-    dt = 1e-6
+    N = 2048
+    dt = 1e-8
     h = 2 * np.pi / N
     x = h * np.arange(-N//2, N//2)
 
@@ -39,6 +39,7 @@ if __name__ == "__main__":
         u += (a + 2 * b + 2 * c + d) / 6
 
         if np.mod(n, n_plt) == 0:
+            print('Loading')
             U.append(u.copy())
             t.append(n * dt)
 
