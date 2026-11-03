@@ -57,4 +57,5 @@ if __name__ == "__main__":
         ax.plot(x, np.full_like(x, t_i), u_i, c='black', ls = '-', lw=.8)
 
     ax.set_xlabel('x'), ax.set_ylabel('t'), ax.set_zlabel('u')
+    ax.set_box_aspect((1.4, 1.4, .4))
     plt.show()
